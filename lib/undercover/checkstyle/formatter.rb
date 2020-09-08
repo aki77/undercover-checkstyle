@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'stringio'
 require 'rexml/document'
 require 'rexml/formatters/pretty'
 
