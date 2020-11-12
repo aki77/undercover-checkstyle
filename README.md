@@ -7,7 +7,7 @@
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'undercover-checkstyle', github: 'aki77/undercover-checkstyle'
+gem 'undercover-checkstyle'
 ```
 
 And then execute:
