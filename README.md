@@ -48,15 +48,12 @@ jobs:
       RUBYOPT: -EUTF-8
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
-
-      - name: Bundle install
-        run: |
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
+        with:
+          bundler-cache: true
 
       - name: Rspec
         run: bundle exec rspec
@@ -66,6 +63,12 @@ jobs:
           mkdir -p $HOME/bin && curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh| sh -s -- -b $HOME/bin
           echo ::add-path::$HOME/bin
           echo ::add-path::$(go env GOPATH)/bin # for Go projects
+
+      # NOTE: Uncommenting removes every past `undercover` comment
+      # - uses: aki77/delete-pr-comments-action@v1
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     bodyContains: "[undercover]"
 
       - name: Run reviewdog
         env:
