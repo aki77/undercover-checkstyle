@@ -69,6 +69,7 @@ jobs:
       #   with:
       #     token: ${{ secrets.GITHUB_TOKEN }}
       #     bodyContains: "[undercover]"
+      #     noReply: "true"
 
       - name: Run reviewdog
         env:
