@@ -58,11 +58,9 @@ jobs:
       - name: Rspec
         run: bundle exec rspec
 
-      - name: Setup reviewdog
-        run: |
-          mkdir -p $HOME/bin && curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh| sh -s -- -b $HOME/bin
-          echo ::add-path::$HOME/bin
-          echo ::add-path::$(go env GOPATH)/bin # for Go projects
+      - uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest
 
       # NOTE: Uncommenting removes every past `undercover` comment
       # - uses: aki77/delete-pr-comments-action@v1
@@ -75,7 +73,7 @@ jobs:
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git fetch
+          git fetch --no-tags
           reviewdog -reporter=github-pr-review -runners=undercover
 ```
 
