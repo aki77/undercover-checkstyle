@@ -1,3 +1,7 @@
+It's now recommended to use [reviewdog-action-code-coverage](https://github.com/aki77/reviewdog-action-code-coverage) instead of this approach.
+
+----
+
 # undercover-checkstyle
 
 ![Actions Demo](https://i.gyazo.com/881890dcba76cf30a8db86d9635ba38a.png)
